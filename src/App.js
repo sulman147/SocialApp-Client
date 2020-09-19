@@ -10,18 +10,21 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 
 //Components
-import Navbar from "./components/Navbar";
+import Navbar from "./components/layout/Navbar";
 import AuthRoute from "./util/AuthRoute";
 
 // Pages
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+import user from "./pages/user";
+
 import { logoutUser, getUserData } from "./redux/actions/userActions";
 import { SET_AUTHENTICATED } from "./redux/types";
 import axios from "axios";
 
 const theme = createMuiTheme(themeFile);
+axios.defaults.baseURL = "https://asia-south1-social-cv.cloudfunctions.net/api";
 
 const token = localStorage.FBIdToken;
 if (token) {
@@ -46,6 +49,12 @@ function App() {
               <Route exact path="/" component={home} />
               <AuthRoute exact path="/login" component={login} />
               <AuthRoute exact path="/signup" component={signup} />
+              <Route exact path="/users/:handle" component={user} />
+              <Route
+                exact
+                path="/users/:handle/scream/:screamId"
+                component={user}
+              />
             </Switch>
           </div>
         </Router>

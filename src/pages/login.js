@@ -53,7 +53,6 @@ class login extends Component {
       UI: { loading },
     } = this.props;
     const { errors } = this.state;
-    console.log(loading);
     return (
       <Grid container className={classes.form}>
         <Grid item sm />
